@@ -23,8 +23,6 @@ final class OctoFull extends Octo {
                 moveToFull(world, fullTarget.get(), scheduler)) {
 
             ((Atlantis)fullTarget.get()).scheduleActions(scheduler, world, imageStore);
-                System.out.println("hit");
-                // I cant figure out how to get the animation to hit, ive been trying forever and cant figure out what im missing :(
 
             this.transformFull(world, scheduler, imageStore);
 

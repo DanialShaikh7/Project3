@@ -1,6 +1,7 @@
 import processing.core.PImage;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 final class WorldModel
 {
@@ -205,7 +206,19 @@ final class WorldModel
          throw new IllegalArgumentException("position occupied");
       }
 
-      addEntity(entity);
+//      try {
+//         if (entities.stream().anyMatch(c -> c instanceof Octo) == true && entity instanceof Octo) {
+//            throw new Exception("hyena already exists");
+//         }
+//         else {
+            addEntity(entity);
+//         }
+//      }
+//      catch (Exception e) {
+//         System.out.println(e);
+//      }
+
+
    }
 
    public boolean withinBounds(Point pos)
@@ -226,8 +239,18 @@ final class WorldModel
    {
       if (withinBounds(entity.getPosition()))
       {
+//         try{
+//            if (entities.stream().filter(p -> p instanceof Crab).collect(Collectors.toSet()).size() < 10 && entity instanceof Crab) {
+//               System.out.println(entities.stream().filter(p -> p instanceof Crab).collect(Collectors.toSet()).size());
+//               throw new IllegalArgumentException("too many cows lol");
+//            }
+////         }
+//         catch (Exception e) {
+//            System.out.println(e);
+//         }
          setOccupancyCell(entity.getPosition(), entity);
          entities.add(entity);
+
       }
 
    }
@@ -260,6 +283,7 @@ final class WorldModel
          entity.setPosition(new Point(-1, -1));
          entities.remove(entity);
          setOccupancyCell(pos, null);
+         entity.setImages(null);
       }
    }
 

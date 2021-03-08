@@ -19,7 +19,7 @@ public class Fish extends ActiveEntity {
     public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 
         Crab crab = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
-                this.getPosition(), imageStore.getImageList(CRAB_KEY), resourceLimit, resourceCount,
+                /*new Point((int)(Math.random() * 40), (int)(Math.random() * 30))*/this.getPosition(), imageStore.getImageList(CRAB_KEY), resourceLimit, resourceCount,
                 this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
                 CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(CRAB_ANIMATION_MAX - CRAB_ANIMATION_MIN));
 

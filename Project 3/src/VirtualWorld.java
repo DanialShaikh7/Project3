@@ -81,6 +81,14 @@ public final class VirtualWorld
       this.view.drawViewport();
    }
 
+   private void triggerEvent(Point x) {
+//      Entity hyena = new OctoNotFull("hyena", x, )
+   }
+
+   public void mousePressed() {
+      triggerEvent(new Point(mouseX, mouseY));
+   }
+
    public void keyPressed()
    {
       if (key == CODED)

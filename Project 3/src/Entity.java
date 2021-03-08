@@ -26,6 +26,8 @@ public abstract class Entity {
       this.animationPeriod = animationPeriod;
    }
 
+
+
    public void setId(String newId) {
       this.id = newId;
    }
