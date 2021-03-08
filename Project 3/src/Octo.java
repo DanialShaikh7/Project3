@@ -11,20 +11,21 @@ public abstract class Octo extends ActiveEntity {
     }
 
     public Point nextPositionOcto(WorldModel world, Point destPos) {
-        int horiz = Integer.signum(destPos.x - this.getPosition().x);
-        Point newPos = new Point(this.getPosition().x + horiz,
-                this.getPosition().y);
 
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.y - this.getPosition().y);
-            newPos = new Point(this.getPosition().x,
-                    this.getPosition().y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = this.getPosition();
-            }
+        PathingStrategy strategy = new AStarPathingStrategy();
+        Point newPos = null;
+        try {
+            newPos =  strategy.computePath(this.getPosition(), destPos,
+                    p -> world.withinBounds(p) && !world.isOccupied(p),
+                    (p1, p2) -> p1.adjacent(p2),
+                    PathingStrategy.CARDINAL_NEIGHBORS).get(0);
         }
-
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        if (newPos == null) {
+            return this.getPosition();
+        }
         return newPos;
     }
 

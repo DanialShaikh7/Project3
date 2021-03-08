@@ -7,6 +7,8 @@ final class Point
 {
    public final int x;
    public final int y;
+   public double g;
+   public double f;
 
    private final String QUAKE_ID = "quake";
    private final int QUAKE_ACTION_PERIOD = 1100;
@@ -20,6 +22,12 @@ final class Point
    {
       this.x = x;
       this.y = y;
+      int g = 0;
+      int f = 0;
+   }
+
+   public void setG(double g) {
+      this.g = g;
    }
 
    public String toString()
@@ -126,6 +134,12 @@ final class Point
       return (this.x == p2.x && Math.abs(this.y - p2.y) == 1) ||
               (this.y == p2.y && Math.abs(this.x - p2.x) == 1);
    }
+
+   public void calculateF(Point end) {
+      f = Math.abs(end.x-this.x) + Math.abs(end.y - this.y) + g;
+   }
+
+
 
 
 }

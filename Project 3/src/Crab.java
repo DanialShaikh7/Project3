@@ -1,6 +1,7 @@
 import processing.core.PImage;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class Crab extends ActiveEntity {
@@ -60,24 +61,20 @@ public class Crab extends ActiveEntity {
 
 
     public Point nextPositionCrab(WorldModel world, Point destPos) {
-        int horiz = Integer.signum(destPos.x - this.getPosition().x);
-        Point newPos = new Point(this.getPosition().x + horiz,
-                this.getPosition().y);
-
-        Optional<Entity> occupant = world.getOccupant(newPos);
-
-        if (horiz == 0 ||
-                (occupant.isPresent() && !(occupant.get() instanceof Fish)))
-        {
-            int vert = Integer.signum(destPos.y - this.getPosition().y);
-            newPos = new Point(this.getPosition().x, this.getPosition().y + vert);
-            occupant = world.getOccupant(newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get() instanceof Fish))) {
-                newPos = this.getPosition();
-            }
+        PathingStrategy strategy = new SingleStepPathingStrategy();
+        Point newPos = null;
+        try {
+            newPos =  strategy.computePath(this.getPosition(), destPos,
+                    p -> world.withinBounds(p) && !world.isOccupied(p),
+                    (p1, p2) -> p1.adjacent(p2),
+                    PathingStrategy.CARDINAL_NEIGHBORS).get(0);
         }
-
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        if (newPos == null) {
+            return this.getPosition();
+        }
         return newPos;
     }
 
