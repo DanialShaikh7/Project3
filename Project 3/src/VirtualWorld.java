@@ -94,9 +94,9 @@ public final class VirtualWorld
          world.setBackground(p, smashedGrass);
          System.out.println("works");
       }
-         Entity octoOnClick = new OctoNotFull("octo", new Point(mouseX,mouseY),imageStore.getImageList("octo"),2,0,25,25);
-         world.addEntity(octoOnClick);
-         octoOnClick.scheduleActions(scheduler, world,imageStore);
+      Entity octoOnClick = new OctoNotFull("octo", getPressedPoint(),imageStore.getImageList("octo"),2,0,25,25);
+      world.addEntity(octoOnClick);
+      octoOnClick.scheduleActions(scheduler, world,imageStore);
 
    }
 

@@ -71,7 +71,6 @@ public class Crab extends ActiveEntity {
                     PathingStrategy.CARDINAL_NEIGHBORS).get(0);
         }
         catch (Exception e) {
-            System.out.println(e);
         }
         if (newPos == null) {
             return this.getPosition();

@@ -64,7 +64,6 @@ final class WorldModel
          mario.executeMarioActivity(this, imageStore, scheduler);
       }
       catch (Exception e) {
-         System.out.println(e);
       }
    }
 

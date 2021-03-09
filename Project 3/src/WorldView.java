@@ -21,6 +21,10 @@ final class WorldView
       this.viewport = new Viewport(numRows, numCols);
    }
 
+   public void setWorld(WorldModel worldModel) {
+      this.world = worldModel;
+   }
+
 
 
    public void shiftView(int colDelta, int rowDelta)
@@ -52,7 +56,11 @@ final class WorldView
 
    public void drawEntities()
    {
+      int count = 0;
       for (Entity entity : this.world.entities) {
+         if (entity instanceof Octo) {
+            count++;
+         }
          Point pos = entity.getPosition();
 
          if (this.viewport.contains(pos))
@@ -63,6 +71,7 @@ final class WorldView
 
          }
       }
+      System.out.println("lOOK HERE YOU FUCK!" + count);
    }
 
    public void drawViewport() {
