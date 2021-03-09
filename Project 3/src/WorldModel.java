@@ -10,6 +10,7 @@ final class WorldModel
    public Background background[][];
    public Entity occupancy[][];
    public Set<Entity> entities;
+   public Entity mario;
 
    private static final String OCTO_KEY = "octo";
    private static final int OCTO_NUM_PROPERTIES = 7;
@@ -57,6 +58,9 @@ final class WorldModel
 
    private static final int PROPERTY_KEY = 0;
 
+   public void setMarioPos(int x, int y) {
+      mario.setMarioPos(new Point(mario.getPosition().x + x, mario.getPosition().y+y), this);
+   }
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)
    {
@@ -206,19 +210,10 @@ final class WorldModel
          throw new IllegalArgumentException("position occupied");
       }
 
-//      try {
-//         if (entities.stream().anyMatch(c -> c instanceof Octo) == true && entity instanceof Octo) {
-//            throw new Exception("hyena already exists");
-//         }
-//         else {
-            addEntity(entity);
-//         }
-//      }
-//      catch (Exception e) {
-//         System.out.println(e);
-//      }
-
-
+      if (entity instanceof Fish) {
+         mario = entity;
+      }
+      addEntity(entity);
    }
 
    public boolean withinBounds(Point pos)

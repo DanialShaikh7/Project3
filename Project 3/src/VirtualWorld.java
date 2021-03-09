@@ -75,18 +75,13 @@ public final class VirtualWorld
 
    public void draw()
    {
-//      try {
-         long time = System.currentTimeMillis();
-         if (time >= next_time) {
-            this.scheduler.updateOnTime(time);
-            next_time = time + TIMER_ACTION_PERIOD;
-//         }
-
-         this.view.drawViewport();
+      long time = System.currentTimeMillis();
+      if (time >= next_time) {
+         this.scheduler.updateOnTime(time);
+         next_time = time + TIMER_ACTION_PERIOD;
+      this.view.drawViewport();
       }
-//      catch (Exception e) {
-//         System.out.println("FUCK!");
-//      }
+
    }
 
    private void triggerEvent(Point x) {
@@ -131,19 +126,19 @@ public final class VirtualWorld
          switch (keyCode)
          {
             case UP:
-              // dy = -1;
+               dy = -1;
                break;
             case DOWN:
-              // dy = 1;
+               dy = 1;
                break;
             case LEFT:
-               //dx = -1;
+               dx = -1;
                break;
             case RIGHT:
-              // dx = 1;
+               dx = 1;
                break;
          }
-         this.view.shiftView( dx, dy);
+         world.setMarioPos(dx, dy);
       }
    }
 

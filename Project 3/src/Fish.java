@@ -17,6 +17,8 @@ public class Fish extends ActiveEntity {
 
     }
 
+
+
 //    public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 //
 //        Crab crab = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,

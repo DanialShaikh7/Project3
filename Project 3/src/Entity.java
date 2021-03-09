@@ -44,6 +44,12 @@ public abstract class Entity {
       this.position = newPos;
    }
 
+   public void setMarioPos(Point newPos, WorldModel world) {
+      if (world.getOccupancyCell(newPos) == null) {
+         this.position = newPos;
+      }
+   }
+
    public Point getPosition() {
       return position;
    }
