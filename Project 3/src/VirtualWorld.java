@@ -12,6 +12,8 @@ import java.util.*;
 public final class VirtualWorld
    extends PApplet
 {
+
+
    public static final int TIMER_ACTION_PERIOD = 100;
    public static final int VIEW_WIDTH = 1280;
    public static final int VIEW_HEIGHT = 960;
@@ -92,6 +94,10 @@ public final class VirtualWorld
          world.setBackground(p, smashedGrass);
          System.out.println("works");
       }
+         Entity octoOnClick = new OctoNotFull("octo", new Point(mouseX,mouseY),imageStore.getImageList("octo"),2,0,25,25);
+         world.addEntity(octoOnClick);
+         octoOnClick.scheduleActions(scheduler, world,imageStore);
+
    }
 
 
