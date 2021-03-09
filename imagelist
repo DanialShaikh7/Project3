@@ -11,7 +11,10 @@ octo images/hyena3.png 255 255 255 0
 octo images/hyena4.png 255 255 255 0
 octo images/hyena5.png 255 255 255 0
 obstacle images/rock.bmp
-fish images/fish.bmp 255 255 255 0
+fish images/Mario.png 255 255 255 0
+fish images/Mario1.png 255 255 255 0
+fish images/Mario2.png 255 255 255 0
+fish images/Mario3.png 255 255 255 0
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0
 quake images/quake3.bmp 255 255 255 0
