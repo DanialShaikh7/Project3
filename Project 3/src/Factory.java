@@ -10,11 +10,10 @@ public class Factory {
     private static final int QUAKE_ACTION_PERIOD = 1100;
     private static final int QUAKE_ANIMATION_PERIOD = 100;
 
-    public static OctoNotFull createOctoNotFull(String id, Point position, int resourceLimit, int actionPeriod,
-                                                  int animationPeriod,
-                                                  List<PImage> images) {
+    public static OctoNotFull createOctoNotFull(String id, Point position,List<PImage> images, int resourceLimit, int actionPeriod,
+                                                  int animationPeriod) {
         return new OctoNotFull(id, position, images, 0,
-                resourceLimit, 0, actionPeriod, animationPeriod);
+                resourceLimit,  actionPeriod, animationPeriod);
 
     }
 
@@ -27,12 +26,12 @@ public class Factory {
                 animationPeriod);
     }
 
-    public static Obstacle createObstacle(String id, Point position, List<PImage> images) {
-        return new Obstacle(id, position, images,0);
+    public static Obstacle createObstacle(String id, Point position,List<PImage> images,int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
+        return new Obstacle(id, position, images);
     }
 
     public static Fish createFish(
-            String id, Point position, int actionPeriod, List<PImage> images)
+            String id, Point position,List<PImage> images,int resourceLimit, int resourceCount,int actionPeriod,int animationPeriod )
     {
         return new Fish(id, position, images, 0, actionPeriod);
     }
@@ -58,8 +57,8 @@ public class Factory {
         return new SeaGrass(id, position, images, 0, actionPeriod);
     }
 
-    public static Entity createAtlantis(String id, Point position,List<PImage> images) {
-        return new Atlantis(id, position, images,0);
+    public static Entity createAtlantis(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod){
+        return new Atlantis()
     }
 
     public static Action createActivityAction(ActiveEntity entity, WorldModel world, ImageStore imageStore) {
