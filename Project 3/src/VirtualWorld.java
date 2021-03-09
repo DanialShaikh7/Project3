@@ -92,6 +92,7 @@ public final class VirtualWorld
 
       for (Point p : aroundPressedPoints(1)) {
          world.setBackground(p, smashedGrass);
+         System.out.println("works");
       }
    }
 
