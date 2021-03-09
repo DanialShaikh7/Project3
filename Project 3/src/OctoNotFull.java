@@ -13,7 +13,7 @@ public class OctoNotFull extends Octo {
 
     public void executeOctoNotFullActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
-                new Fish /*Crab*/(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
+                new Crab(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
 
         if (!notFullTarget.isPresent() ||
                 !moveToNotFull(world, notFullTarget.get(), scheduler) ||

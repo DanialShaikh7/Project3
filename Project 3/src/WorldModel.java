@@ -237,18 +237,19 @@ final class WorldModel
 
    public void addEntity(Entity entity)
    {
+      int count = 0;
       if (withinBounds(entity.getPosition()))
       {
-         try{
-            if (entities.stream().filter(p -> p instanceof Crab).collect(Collectors.toSet()).size() < 15 && entity instanceof Crab) {
-               throw new IllegalArgumentException("too many cows lol");
+         for (Entity a : entities) {
+            if (a instanceof Crab) {
+               count++;
             }
          }
-         catch (Exception e) {
-            System.out.println(e);
+         if (count < 15) {
+            setOccupancyCell(entity.getPosition(), entity);
+            entities.add(entity);
          }
-         setOccupancyCell(entity.getPosition(), entity);
-         entities.add(entity);
+
 
       }
 

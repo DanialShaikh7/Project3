@@ -25,12 +25,14 @@ public class SeaGrass extends ActiveEntity {
 
         if (openPt.isPresent())
         {
-            Fish fish = new Fish(FISH_ID_PREFIX + this.getId(), openPt.get(), imageStore.getImageList(world.FISH_KEY), resourceLimit, resourceCount,
-                    FISH_CORRUPT_MIN + ImageStore.rand.nextInt(FISH_CORRUPT_MAX - FISH_CORRUPT_MIN), this.getAnimationPeriod());
+            Crab cow = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
+                new Point((int)(Math.random() * 40), (int)(Math.random() * 30)), imageStore.getImageList(Fish.CRAB_KEY), resourceLimit, resourceCount,
+                this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
+                Fish.CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(Fish.CRAB_ANIMATION_MAX - Fish.CRAB_ANIMATION_MIN));
 
 
-            world.addEntity(fish);
-            fish.scheduleActions(scheduler, world, imageStore);
+            world.addEntity(cow);
+            cow.scheduleActions(scheduler, world, imageStore);
         }
 
         Activity act = new Activity(this, world, imageStore, 0);

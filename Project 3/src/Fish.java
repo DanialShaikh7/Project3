@@ -17,57 +17,43 @@ public class Fish extends ActiveEntity {
 
     }
 
+//    public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+//
+//        Crab crab = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
+//                /*new Point((int)(Math.random() * 40), (int)(Math.random() * 30))*/this.getPosition(), imageStore.getImageList(CRAB_KEY), resourceLimit, resourceCount,
+//                this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
+//                CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(CRAB_ANIMATION_MAX - CRAB_ANIMATION_MIN));
+//
+//        world.removeEntity(this);
+//        scheduler.unscheduleAllEvents(this);
+//
+//        world.addEntity(crab);
+//        crab.scheduleActions(scheduler, world, imageStore);
+//    }
+
     public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        Optional<Entity> Target = world.findNearest(this.getPosition(),
+                new Crab(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
 
-        Crab crab = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
-                /*new Point((int)(Math.random() * 40), (int)(Math.random() * 30))*/this.getPosition(), imageStore.getImageList(CRAB_KEY), resourceLimit, resourceCount,
-                this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
-                CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(CRAB_ANIMATION_MAX - CRAB_ANIMATION_MIN));
-
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
-
-        world.addEntity(crab);
-        crab.scheduleActions(scheduler, world, imageStore);
+        if (!Target.isPresent())
+        {
+            Activity act = new Activity(this, world, imageStore, 0);
+            scheduler.scheduleEvent(this,
+                    act.createActivityAction(world, imageStore),
+                    this.getActionPeriod());
+        }
     }
 
-//    public void executeOctoNotFullActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-//        Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
-//                new Fish /*Crab*/(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
-//
-//        if (!notFullTarget.isPresent() ||
-//                !moveToNotFull(world, notFullTarget.get(), scheduler) ||
-//                !transformNotFull(world, scheduler, imageStore))
-//        {
-//            Activity act = new Activity(this, world, imageStore, 0);
-//            scheduler.scheduleEvent(this,
-//                    act.createActivityAction(world, imageStore),
-//                    this.getActionPeriod());
-//        }
-//    }
-//
-//
-//    public boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
-//        if (this.getPosition().adjacent(target.getPosition())) {
-//            this.setResourceCount(this.getResourceCount() + 1);
-//            world.removeEntity(target);
-//            scheduler.unscheduleAllEvents(target);
-//
-//            return true;
-//        }
-//        else {
-//            Point nextPos = nextPositionOcto(world, target.getPosition());
-//
-//            if (!this.getPosition().equals(nextPos)) {
-//                Optional<Entity> occupant = world.getOccupant(nextPos);
-//                if (occupant.isPresent()) {
-//                    scheduler.unscheduleAllEvents(occupant.get());
-//                }
-//
-//                world.moveEntity(this, nextPos);
-//            }
-//            return false;
-//        }
-//    }
+
+    public boolean moveMario(WorldModel world, Entity target, EventScheduler scheduler) {
+        if (this.getPosition().adjacent(target.getPosition())) {
+            this.setResourceCount(this.getResourceCount() + 1);
+            world.removeEntity(target);
+            scheduler.unscheduleAllEvents(target);
+
+            return true;
+        }
+        return false;
+    }
 
 }
