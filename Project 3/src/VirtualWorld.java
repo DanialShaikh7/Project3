@@ -86,7 +86,7 @@ public final class VirtualWorld
 
    }
 
-   private void triggerEvent(Point x) {
+   private void triggerEvent(Point x) throws InterruptedException {
       //Background smashedGrass = new Background(SMASHED_GRASS_KEY, imageStore.getImageList(SMASHED_GRASS_KEY));
       Background smashedGrass = new Background(SMASHED_GRASS_KEY, imageStore.getImageList(SMASHED_GRASS_KEY));
 
@@ -97,12 +97,20 @@ public final class VirtualWorld
       Entity octoOnClick = new OctoNotFull("octo", getPressedPoint(),imageStore.getImageList("octo"),2,0,25,25);
       world.addEntity(octoOnClick);
       octoOnClick.scheduleActions(scheduler, world,imageStore);
-
+      textSize(90);
+      stroke(100, 100, 100);
+      fill(0, 0, 0);
+      text("A THREAT IS COMING...", 250, 250);
+      Thread.sleep(2000);
    }
 
 
    public void mousePressed() {
-      triggerEvent(new Point(mouseX, mouseY));
+      try {
+         triggerEvent(new Point(mouseX, mouseY));
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
    }
    private Point offSetPressedPoint(int i, int j){return new Point(getPressedPoint().getX()+i,getPressedPoint().getY()+j);}
    private Point getPressedPoint(){return new Point(mouseX /TILE_WIDTH  , mouseY /TILE_HEIGHT   );}
