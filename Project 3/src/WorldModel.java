@@ -59,8 +59,13 @@ final class WorldModel
    private static final int PROPERTY_KEY = 0;
 
    public void setMarioPos(int x, int y, EventScheduler scheduler, ImageStore imageStore) {
-      mario.setMarioPos(new Point(mario.getPosition().x + x, mario.getPosition().y+y), this);
-      mario.executeMarioActivity(this, imageStore, scheduler);
+      try {
+         mario.setMarioPos(new Point(mario.getPosition().x + x, mario.getPosition().y + y), this);
+         mario.executeMarioActivity(this, imageStore, scheduler);
+      }
+      catch (Exception e) {
+         System.out.println(e);
+      }
    }
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)

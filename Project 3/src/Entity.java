@@ -45,7 +45,10 @@ public abstract class Entity {
    }
 
    public void setMarioPos(Point newPos, WorldModel world) {
-      if (world.getOccupancyCell(newPos) == null && world.withinBounds(newPos)) {
+      if (world.withinBounds(newPos) == false) {
+         throw new RuntimeException("out of bounds bro!");
+      }
+      else if (world.getOccupancyCell(newPos) == null) {
          this.position = newPos;
       }
    }
