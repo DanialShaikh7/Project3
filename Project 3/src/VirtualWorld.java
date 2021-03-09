@@ -14,8 +14,8 @@ public final class VirtualWorld
 {
    public static final int TIMER_ACTION_PERIOD = 100;
 
-   public static final int VIEW_WIDTH = 640;
-   public static final int VIEW_HEIGHT = 480;
+   public static final int VIEW_WIDTH = 1280;
+   public static final int VIEW_HEIGHT = 960;
    public static final int TILE_WIDTH = 32;
    public static final int TILE_HEIGHT = 32;
    public static final int WORLD_WIDTH_SCALE = 2;
@@ -105,7 +105,7 @@ public final class VirtualWorld
       triggerEvent(new Point(mouseX, mouseY));
    }
    private Point offSetPressedPoint(int i, int j){return new Point(getPressedPoint().getX()+i,getPressedPoint().getY()+j);}
-   private Point getPressedPoint(){return new Point(mouseX/TILE_WIDTH , mouseY/TILE_HEIGHT);}
+   private Point getPressedPoint(){return new Point(mouseX /TILE_WIDTH  , mouseY /TILE_HEIGHT   );}
 
    //###
    //#*#
@@ -132,16 +132,16 @@ public final class VirtualWorld
          switch (keyCode)
          {
             case UP:
-               dy = -1;
+              // dy = -1;
                break;
             case DOWN:
-               dy = 1;
+              // dy = 1;
                break;
             case LEFT:
-               dx = -1;
+               //dx = -1;
                break;
             case RIGHT:
-               dx = 1;
+              // dx = 1;
                break;
          }
          this.view.shiftView( dx, dy);
