@@ -20,7 +20,7 @@ public class Factory {
 
 
 
-    public static OctoFull createMinerFull(String id, Point position, int resourceLimit, int actionPeriod, int animationPeriod,
+    public static OctoFull createOctoFull(String id, Point position, int resourceLimit, int actionPeriod, int animationPeriod,
                                             List<PImage> images) {
         return new OctoFull( id, position, images, 0,
                 resourceLimit, actionPeriod,
