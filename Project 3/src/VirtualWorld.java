@@ -59,7 +59,7 @@ public final class VirtualWorld
    {
       this.imageStore = new ImageStore(
          createImageColored(TILE_WIDTH, TILE_HEIGHT, DEFAULT_IMAGE_COLOR));
-      this.world = new WorldModel(WORLD_ROWS, WORLD_COLS,
+      this.world = new WorldModel(WORLD_ROWS/2, WORLD_COLS/2,
          createDefaultBackground(imageStore));
       this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, world,
          TILE_WIDTH, TILE_HEIGHT);
