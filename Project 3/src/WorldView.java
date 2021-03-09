@@ -60,7 +60,6 @@ final class WorldView
             Point viewPoint = this.viewport.worldToViewport(pos.x, pos.y);
             this.screen.image(entity.getCurrentImage(),
                     viewPoint.x * this.tileWidth, viewPoint.y * this.tileHeight);
-            System.out.println("LOOK HERE FUCKER" + " " + viewPoint.x*this.tileWidth + " " + viewPoint.y*this.tileHeight);
 
          }
       }

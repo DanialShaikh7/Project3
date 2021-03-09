@@ -13,7 +13,6 @@ public final class VirtualWorld
    extends PApplet
 {
    public static final int TIMER_ACTION_PERIOD = 100;
-
    public static final int VIEW_WIDTH = 1280;
    public static final int VIEW_HEIGHT = 960;
    public static final int TILE_WIDTH = 32;
