@@ -10,6 +10,7 @@ public class Fish extends ActiveEntity {
     public static final int CRAB_PERIOD_SCALE = 4;
     public static final int CRAB_ANIMATION_MIN = 50;
     public static final int CRAB_ANIMATION_MAX = 150;
+    private int score = 0;
 
     public Fish(String id, Point position, List<PImage> images, int resourceLimit,
                 int resourceCount, int actionPeriod, int animationPeriod) {
@@ -39,12 +40,18 @@ public class Fish extends ActiveEntity {
 
         try {
             if (this.getPosition().adjacent(Target.get().getPosition())) {
+                score++;
+                System.out.println(score);
                 world.removeEntity(Target.get());
                 scheduler.unscheduleAllEvents(Target.get());
             }
         }
         catch (Exception e) {
             System.out.println("next time");
+        }
+
+        if (score == 20) {
+            System.out.println("YOU WIN!");
         }
     }
 

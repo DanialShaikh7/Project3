@@ -45,7 +45,7 @@ public abstract class Entity {
    }
 
    public void setMarioPos(Point newPos, WorldModel world) {
-      if (world.getOccupancyCell(newPos) == null) {
+      if (world.getOccupancyCell(newPos) == null && world.withinBounds(newPos)) {
          this.position = newPos;
       }
    }

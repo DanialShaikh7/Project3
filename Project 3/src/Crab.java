@@ -11,6 +11,7 @@ public class Crab extends ActiveEntity {
 
     public static final String QUAKE_KEY = "quake";
 
+
     public Crab(String id, Point position, List<PImage> images, int resourceLimit,
                 int resourceCount, int actionPeriod, int animationPeriod) {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
