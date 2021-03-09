@@ -4,6 +4,9 @@ import processing.core.PImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.List;
+
+import java.util.*;
 
 
 public final class VirtualWorld
@@ -25,6 +28,8 @@ public final class VirtualWorld
 
    public static final String IMAGE_LIST_FILE_NAME = "imagelist";
    public static final String DEFAULT_IMAGE_NAME = "background_default";
+   public static final String SMASHED_GRASS_KEY = "smashedgrass";
+
    public static final int DEFAULT_IMAGE_COLOR = 0x808080;
 
    public static final String LOAD_FILE_NAME = "world.sav";
@@ -82,11 +87,34 @@ public final class VirtualWorld
    }
 
    private void triggerEvent(Point x) {
-//      Entity hyena = new OctoNotFull("hyena", x, )
+      //Background smashedGrass = new Background(SMASHED_GRASS_KEY, imageStore.getImageList(SMASHED_GRASS_KEY));
+      Background smashedGrass = new Background(SMASHED_GRASS_KEY, imageStore.getImageList(SMASHED_GRASS_KEY));
+
+      for (Point p : aroundPressedPoints(1)) {
+         world.setBackground(p, smashedGrass);
+      }
    }
+
 
    public void mousePressed() {
       triggerEvent(new Point(mouseX, mouseY));
+   }
+   private Point offSetPressedPoint(int i, int j){return new Point(getPressedPoint().getX()+i,getPressedPoint().getY()+j);}
+   private Point getPressedPoint(){return new Point(mouseX/TILE_WIDTH , mouseY/TILE_HEIGHT);}
+
+   //###
+   //#*#
+   //###
+   private List<Point> aroundPressedPoints(int disAwayFromPressedPoint){
+
+      return Arrays.asList(offSetPressedPoint(0,disAwayFromPressedPoint),
+              offSetPressedPoint(disAwayFromPressedPoint,0),
+              offSetPressedPoint(disAwayFromPressedPoint,disAwayFromPressedPoint),
+              offSetPressedPoint(0,-disAwayFromPressedPoint),
+              offSetPressedPoint(-disAwayFromPressedPoint,0),
+              offSetPressedPoint(-disAwayFromPressedPoint,-disAwayFromPressedPoint),
+              offSetPressedPoint(disAwayFromPressedPoint,-disAwayFromPressedPoint),
+              offSetPressedPoint(-disAwayFromPressedPoint,disAwayFromPressedPoint));
    }
 
    public void keyPressed()

@@ -25,6 +25,8 @@ final class Point
       int g = 0;
       int f = 0;
    }
+   public int getX(){return x;}
+   public int getY(){return y;}
 
    public void setG(double g) {
       this.g = g;
