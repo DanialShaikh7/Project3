@@ -47,10 +47,10 @@ public class Fish extends ActiveEntity {
             }
         }
         catch (Exception e) {
-            System.out.println("next time");
         }
 
         if (score == 20) {
+            System.out.println("you win!");
             return true;
         }
         return false;

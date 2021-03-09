@@ -54,6 +54,12 @@ public class Animation extends Action {
                         ((Atlantis)(this.getEntity())).getAnimationPeriod());
             }
 
+            else if (this.getEntity() instanceof GrimReaper) {
+                scheduler.scheduleEvent(this.getEntity(),
+                        createAnimationAction(Math.max(this.getRepeatCount() - 1, 0)),
+                        ((GrimReaper)(this.getEntity())).getAnimationPeriod());
+            }
+
             else {
                 throw new UnsupportedOperationException(
                         String.format("executeActivityAction not supported for %s",

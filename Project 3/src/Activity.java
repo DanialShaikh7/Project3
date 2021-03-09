@@ -40,6 +40,10 @@ public class Activity extends Action {
             ((Atlantis) (this.getEntity())).executeAtlantisActivity(this.getWorld(), this.getImageStore(),
                     scheduler);
         }
+        else if (this.getEntity() instanceof GrimReaper) {
+            ((GrimReaper) (this.getEntity())).executeReaperActivity(this.getWorld(), this.getImageStore(),
+                    scheduler);
+        }
         else {
             throw new UnsupportedOperationException(
                     String.format("executeActivityAction not supported for %s",

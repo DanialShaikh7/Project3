@@ -106,6 +106,10 @@ final class Point
               resourceLimit, 0, actionPeriod, animationPeriod);
    }
 
+   public GrimReaper createGrimReaper(String id, int actionPeriod, int animationPeriod, List<PImage> images) {
+      return new GrimReaper(id, this, images, 0, 0, actionPeriod,animationPeriod);
+   }
+
 
    public Optional<Entity> nearestEntity(List<Entity> entities)
    {

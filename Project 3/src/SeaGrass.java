@@ -35,7 +35,7 @@ public class SeaGrass extends ActiveEntity {
             Crab cow = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
                 here, imageStore.getImageList(Fish.CRAB_KEY), resourceLimit, resourceCount,
                 this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
-                Fish.CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(Fish.CRAB_ANIMATION_MAX - Fish.CRAB_ANIMATION_MIN));
+                500 + ImageStore.rand.nextInt(Fish.CRAB_ANIMATION_MAX - Fish.CRAB_ANIMATION_MIN));
 
 
             world.addEntity(cow);

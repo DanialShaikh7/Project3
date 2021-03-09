@@ -56,6 +56,14 @@ final class WorldModel
    private static final int BGND_COL = 2;
    private static final int BGND_ROW = 3;
 
+   private static final String REAPER_KEY = "reaper";
+   private static final int REAPER_NUM_PROPERTIES = 6;
+   private static final int REAPER_ID = 1;
+   private static final int REAPER_COL = 2;
+   private static final int REAPER_ROW = 3;
+   private static final int REAPER_ACTION_PERIOD = 4;
+   private static final int REAPER_ANIMATION_PERIOD = 5;
+
    private static final int PROPERTY_KEY = 0;
 
    public boolean setMarioPos(int x, int y, EventScheduler scheduler, ImageStore imageStore) {
@@ -66,6 +74,20 @@ final class WorldModel
       catch (Exception e) {
       }
       return false;
+   }
+
+   public void scareEntities(ImageStore imageStore) {
+      for (Entity e : entities) {
+         if (e instanceof Crab) {
+            e.setActionPeriod(e.getActionPeriod()/2);
+            e.setAnimationPeriod(e.getAnimationPeriod()/2);
+         }
+         else if (e instanceof Fish) {
+            e.setImages(imageStore.getImageList("mario"));
+            e.setAnimationPeriod(1000);
+            e.setActionPeriod(1000);
+         }
+      }
    }
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)
@@ -117,6 +139,24 @@ final class WorldModel
    }
 
 
+   public boolean parseReaper(String [] properties,
+                            ImageStore imageStore)
+   {
+      if (properties.length == REAPER_NUM_PROPERTIES)
+      {
+         System.out.println("got here");
+         Point pt = new Point(Integer.parseInt(properties[REAPER_COL]),
+                 Integer.parseInt(properties[REAPER_ROW]));
+         Entity entity = pt.createGrimReaper(properties[REAPER_ID],
+                 Integer.parseInt(properties[REAPER_ACTION_PERIOD]),
+                 Integer.parseInt(properties[REAPER_ANIMATION_PERIOD]),
+                 imageStore.getImageList(REAPER_KEY));
+         tryAddEntity(entity);
+      }
+
+      System.out.println(properties.length == REAPER_NUM_PROPERTIES);
+      return properties.length == REAPER_NUM_PROPERTIES;
+   }
 
    public boolean parseObstacle(String [] properties,
                                 ImageStore imageStore)
@@ -201,6 +241,8 @@ final class WorldModel
                return parseAtlantis(properties, imageStore);
             case SGRASS_KEY:
                return parseSeaGrass(properties, imageStore);
+            case REAPER_KEY:
+               return parseReaper(properties, imageStore);
          }
       }
 
@@ -218,6 +260,9 @@ final class WorldModel
 
       if (entity instanceof Fish) {
          mario = (Fish)entity;
+      }
+      if (entity instanceof GrimReaper) {
+         System.out.println("WE GOT HERE");
       }
       addEntity(entity);
    }
@@ -238,7 +283,6 @@ final class WorldModel
 
    public void addEntity(Entity entity)
    {
-      int count = 0;
       if (withinBounds(entity.getPosition()))
       {
 //         for (Entity a : entities) {
@@ -385,7 +429,7 @@ final class WorldModel
          }
          catch (NumberFormatException e)
          {
-            System.err.println(String.format("invalid entry on line %d",
+            System.err.println(String.format("invalid entry on line NUMBER FORMAT %d",
                     lineNumber));
          }
          catch (IllegalArgumentException e)
