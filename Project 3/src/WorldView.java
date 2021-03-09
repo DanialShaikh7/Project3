@@ -71,7 +71,6 @@ final class WorldView
 
          }
       }
-      System.out.println("lOOK HERE YOU FUCK!" + count);
    }
 
    public void drawViewport() {

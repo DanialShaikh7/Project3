@@ -144,7 +144,13 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         world.setMarioPos(dx, dy, scheduler, imageStore);
+         if(world.setMarioPos(dx, dy, scheduler, imageStore)) {
+            textSize(90);
+            stroke(100, 100, 100);
+            fill(0, 0, 0);
+            text("YOU WON!", 250, 250);
+            int a = 9/0;
+         }
       }
    }
 

@@ -34,7 +34,7 @@ public class Fish extends ActiveEntity {
 //        crab.scheduleActions(scheduler, world, imageStore);
 //    }
 
-    public void executeMarioActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public boolean executeMarioActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> Target = world.findNearest(this.getPosition(),
                 new Crab(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
 
@@ -51,8 +51,9 @@ public class Fish extends ActiveEntity {
         }
 
         if (score == 20) {
-            System.out.println("YOU WIN!");
+            return true;
         }
+        return false;
     }
 
 
