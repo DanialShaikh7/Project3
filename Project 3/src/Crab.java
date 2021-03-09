@@ -61,7 +61,7 @@ public class Crab extends ActiveEntity {
 
 
     public Point nextPositionCrab(WorldModel world, Point destPos) {
-        PathingStrategy strategy = new AStarPathingStrategy();
+        PathingStrategy strategy = new SingleStepPathingStrategy();
         Point newPos = null;
         try {
             newPos =  strategy.computePath(this.getPosition(), destPos,

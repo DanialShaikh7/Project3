@@ -16,11 +16,9 @@ final class OctoFull extends Octo {
 
         Atlantis atlantis = new Atlantis(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), ATLANTIS_ANIMATION_PERIOD);
 
-        Optional<Entity> fullTarget = world.findNearest(this.getPosition(),
-                atlantis);
+        Optional<Entity> fullTarget = world.findNearest(this.getPosition(), atlantis);
 
-        if (fullTarget.isPresent() &&
-                moveToFull(world, fullTarget.get(), scheduler)) {
+        if (fullTarget.isPresent() && moveToFull(world, fullTarget.get(), scheduler)) {
 
             ((Atlantis)fullTarget.get()).scheduleActions(scheduler, world, imageStore);
 
@@ -38,6 +36,7 @@ final class OctoFull extends Octo {
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         Entity octo = this.getPosition().createOctoNotFull(this.getId(), this.resourceLimit,
                 this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
+        System.out.println(octo);
 
 
         world.removeEntity(this);

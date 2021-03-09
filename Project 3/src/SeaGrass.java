@@ -25,8 +25,15 @@ public class SeaGrass extends ActiveEntity {
 
         if (openPt.isPresent())
         {
+            Point here;
+            while (true) {
+                here = new Point((int)(Math.random() * 40), (int)(Math.random() * 30));
+                if (world.getOccupancyCell(here) == null) {
+                    break;
+                }
+            }
             Crab cow = new Crab(this.getId() + Crab.CRAB_ID_SUFFIX,
-                new Point((int)(Math.random() * 40), (int)(Math.random() * 30)), imageStore.getImageList(Fish.CRAB_KEY), resourceLimit, resourceCount,
+                here, imageStore.getImageList(Fish.CRAB_KEY), resourceLimit, resourceCount,
                 this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
                 Fish.CRAB_ANIMATION_MIN + ImageStore.rand.nextInt(Fish.CRAB_ANIMATION_MAX - Fish.CRAB_ANIMATION_MIN));
 

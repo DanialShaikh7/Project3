@@ -240,12 +240,12 @@ final class WorldModel
       int count = 0;
       if (withinBounds(entity.getPosition()))
       {
-         for (Entity a : entities) {
-            if (a instanceof Crab) {
-               count++;
-            }
-         }
-         if (count < 15) {
+//         for (Entity a : entities) {
+//            if (a instanceof Crab) {
+//               count++;
+//            }
+//         }
+//         if (count < 15) {
             setOccupancyCell(entity.getPosition(), entity);
             entities.add(entity);
          }
@@ -253,7 +253,7 @@ final class WorldModel
 
       }
 
-   }
+//   }
 
    public void moveEntity(Entity entity, Point pos)
    {
