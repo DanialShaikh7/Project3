@@ -138,7 +138,7 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         world.setMarioPos(dx, dy);
+         world.setMarioPos(dx, dy, scheduler, imageStore);
       }
    }
 

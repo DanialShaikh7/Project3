@@ -10,7 +10,7 @@ final class WorldModel
    public Background background[][];
    public Entity occupancy[][];
    public Set<Entity> entities;
-   public Entity mario;
+   public Fish mario;
 
    private static final String OCTO_KEY = "octo";
    private static final int OCTO_NUM_PROPERTIES = 7;
@@ -58,8 +58,9 @@ final class WorldModel
 
    private static final int PROPERTY_KEY = 0;
 
-   public void setMarioPos(int x, int y) {
+   public void setMarioPos(int x, int y, EventScheduler scheduler, ImageStore imageStore) {
       mario.setMarioPos(new Point(mario.getPosition().x + x, mario.getPosition().y+y), this);
+      mario.executeMarioActivity(this, imageStore, scheduler);
    }
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)
@@ -134,7 +135,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[FISH_COL]),
                  Integer.parseInt(properties[FISH_ROW]));
-         Entity entity = pt.createFish(properties[FISH_ID],
+         Fish entity = pt.createFish(properties[FISH_ID],
                  Integer.parseInt(properties[FISH_ACTION_PERIOD]),
                  imageStore.getImageList(FISH_KEY));
          tryAddEntity(entity);
@@ -211,7 +212,7 @@ final class WorldModel
       }
 
       if (entity instanceof Fish) {
-         mario = entity;
+         mario = (Fish)entity;
       }
       addEntity(entity);
    }

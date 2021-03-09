@@ -21,7 +21,7 @@ public class Activity extends Action {
                     this.getImageStore(), scheduler);
         }
         else if (this.getEntity() instanceof Fish) {
-            ((Fish)(this.getEntity())).executeFishActivity(this.getWorld(), this.getImageStore(), scheduler);
+            ((Fish)(this.getEntity())).executeMarioActivity(this.getWorld(), this.getImageStore(), scheduler);
         }
         else if (this.getEntity() instanceof Crab) {
             ((Crab)(this.getEntity())).executeCrabActivity(this.getWorld(),

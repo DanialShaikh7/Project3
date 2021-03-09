@@ -33,29 +33,20 @@ public class Fish extends ActiveEntity {
 //        crab.scheduleActions(scheduler, world, imageStore);
 //    }
 
-    public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void executeMarioActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> Target = world.findNearest(this.getPosition(),
                 new Crab(this.getId(), this.getPosition(), this.getImages(), 0, 0, this.getActionPeriod(), 0));
 
-        if (!Target.isPresent())
-        {
-            Activity act = new Activity(this, world, imageStore, 0);
-            scheduler.scheduleEvent(this,
-                    act.createActivityAction(world, imageStore),
-                    this.getActionPeriod());
+        try {
+            if (this.getPosition().adjacent(Target.get().getPosition())) {
+                world.removeEntity(Target.get());
+                scheduler.unscheduleAllEvents(Target.get());
+            }
+        }
+        catch (Exception e) {
+            System.out.println("next time");
         }
     }
 
-
-    public boolean moveMario(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (this.getPosition().adjacent(target.getPosition())) {
-            this.setResourceCount(this.getResourceCount() + 1);
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
-
-            return true;
-        }
-        return false;
-    }
 
 }
