@@ -26,7 +26,7 @@ public class Crab extends ActiveEntity {
             Point tgtPos = crabTarget.get().getPosition();
 
             if (moveToCrab(world, crabTarget.get(), scheduler)) {
-                ActiveEntity quake = tgtPos.createQuake(imageStore.getImageList(QUAKE_KEY));
+                ActiveEntity quake = Factory.createQuake(tgtPos, imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();

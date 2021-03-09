@@ -127,11 +127,11 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[OCTO_COL]),
                  Integer.parseInt(properties[OCTO_ROW]));
-         Entity entity = pt.createOctoNotFull(properties[OCTO_ID],
+         Entity entity = Factory.createOctoNotFull(properties[OCTO_ID], pt,
+                 imageStore.getImageList(OCTO_KEY),
                  Integer.parseInt(properties[OCTO_LIMIT]),
                  Integer.parseInt(properties[OCTO_ACTION_PERIOD]),
-                 Integer.parseInt(properties[OCTO_ANIMATION_PERIOD]),
-                 imageStore.getImageList(OCTO_KEY));
+                 Integer.parseInt(properties[OCTO_ANIMATION_PERIOD]));
          tryAddEntity(entity);
       }
 
@@ -147,7 +147,7 @@ final class WorldModel
          System.out.println("got here");
          Point pt = new Point(Integer.parseInt(properties[REAPER_COL]),
                  Integer.parseInt(properties[REAPER_ROW]));
-         Entity entity = pt.createGrimReaper(properties[REAPER_ID],
+         Entity entity = Factory.createGrimReaper(properties[REAPER_ID], pt,
                  Integer.parseInt(properties[REAPER_ACTION_PERIOD]),
                  Integer.parseInt(properties[REAPER_ANIMATION_PERIOD]),
                  imageStore.getImageList(REAPER_KEY));
@@ -166,7 +166,7 @@ final class WorldModel
          Point pt = new Point(
                  Integer.parseInt(properties[OBSTACLE_COL]),
                  Integer.parseInt(properties[OBSTACLE_ROW]));
-         Entity entity = pt.createObstacle(properties[OBSTACLE_ID],
+         Entity entity = Factory.createObstacle(properties[OBSTACLE_ID], pt,
                  imageStore.getImageList(OBSTACLE_KEY));
          tryAddEntity(entity);
       }
@@ -180,9 +180,9 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[FISH_COL]),
                  Integer.parseInt(properties[FISH_ROW]));
-         Fish entity = pt.createFish(properties[FISH_ID],
-                 Integer.parseInt(properties[FISH_ACTION_PERIOD]),
-                 imageStore.getImageList(FISH_KEY));
+         Fish entity = Factory.createFish(properties[FISH_ID], pt,
+                 imageStore.getImageList(FISH_KEY),
+                 Integer.parseInt(properties[FISH_ACTION_PERIOD]));
          tryAddEntity(entity);
       }
 
@@ -197,7 +197,7 @@ final class WorldModel
          Point pt = new Point(Integer.parseInt(properties[ATLANTIS_COL]),
                  Integer.parseInt(properties[ATLANTIS_ROW]));
 
-         Entity entity = pt.createAtlantis(properties[ATLANTIS_ID],
+         Entity entity = Factory.createAtlantis(properties[ATLANTIS_ID], pt,
                  imageStore.getImageList(ATLANTIS_KEY));
          tryAddEntity(entity);
       }
@@ -212,7 +212,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[SGRASS_COL]),
                  Integer.parseInt(properties[SGRASS_ROW]));
-         Entity entity = pt.createSgrass(properties[SGRASS_ID],
+         Entity entity = Factory.createSeaGrass(properties[SGRASS_ID], pt,
                  Integer.parseInt(properties[SGRASS_ACTION_PERIOD]),
                  imageStore.getImageList(SGRASS_KEY));
          tryAddEntity(entity);

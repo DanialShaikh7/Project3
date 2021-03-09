@@ -54,7 +54,7 @@ public class OctoNotFull extends Octo {
     {
         if (this.getResourceCount() >= this.getResourceLimit()) {
 
-            Entity octo = (this.getPosition()).createOctoFull(this.getId(), this.resourceLimit,
+            Entity octo = Factory.createOctoFull(this.getId(), this.getPosition(), this.resourceLimit,
                     this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
 
             world.removeEntity(this);

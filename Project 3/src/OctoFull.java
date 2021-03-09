@@ -34,8 +34,8 @@ final class OctoFull extends Octo {
     }
 
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity octo = this.getPosition().createOctoNotFull(this.getId(), this.resourceLimit,
-                this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
+        Entity octo = Factory.createOctoNotFull(this.getId(), this.getPosition(), this.getImages(), this.resourceLimit,
+                this.getActionPeriod(), this.getAnimationPeriod());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);

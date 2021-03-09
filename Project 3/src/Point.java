@@ -10,13 +10,6 @@ final class Point
    public double g;
    public double f;
 
-   private final String QUAKE_ID = "quake";
-   private final int QUAKE_ACTION_PERIOD = 1100;
-   private final int QUAKE_ANIMATION_PERIOD = 100;
-   public static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-
-   private static final int ATLANTIS_ANIMATION_PERIOD = 70;
-
 
    public Point(int x, int y)
    {
@@ -59,57 +52,6 @@ final class Point
 
       return deltaX * deltaX + deltaY * deltaY;
    }
-
-
-   public Obstacle createObstacle(String id, List<PImage> images)
-   {
-      return new Obstacle(id, this, images, 0, 0, 0, 0);
-   }
-
-   public Fish createFish(String id, int actionPeriod,
-                        List<PImage> images)
-   {
-      return new Fish(id, this, images, 0, 0, actionPeriod, 0);
-   }
-
-   public Quake createQuake(List<PImage> images)
-   {
-      return new Quake(QUAKE_ID, this, images, 0, 0, QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
-   }
-
-   public SeaGrass createSgrass(String id, int actionPeriod,
-                          List<PImage> images)
-   {
-      return new SeaGrass(id, this, images, 0, 0, actionPeriod, 0);
-   }
-
-
-   public Atlantis createAtlantis(String id,
-                                      List<PImage> images)
-   {
-      return new Atlantis(id, this, images, 0, 0, 0, ATLANTIS_ANIMATION_PERIOD);
-   }
-
-   public OctoFull createOctoFull(String id, int resourceLimit,
-                                    int actionPeriod, int animationPeriod,
-                                    List<PImage> images)
-   {
-      return new OctoFull(id, this, images,
-              resourceLimit, resourceLimit, actionPeriod, animationPeriod);
-   }
-
-   public OctoNotFull createOctoNotFull(String id, int resourceLimit,
-                                          int actionPeriod, int animationPeriod,
-                                          List<PImage> images)
-   {
-      return new OctoNotFull(id, this, images,
-              resourceLimit, 0, actionPeriod, animationPeriod);
-   }
-
-   public GrimReaper createGrimReaper(String id, int actionPeriod, int animationPeriod, List<PImage> images) {
-      return new GrimReaper(id, this, images, 0, 0, actionPeriod,animationPeriod);
-   }
-
 
    public Optional<Entity> nearestEntity(List<Entity> entities)
    {
