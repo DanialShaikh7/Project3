@@ -7,8 +7,8 @@ final class Point
 {
    public final int x;
    public final int y;
-   public double g;
-   public double f;
+   private double g;
+   private double f;
 
 
    public Point(int x, int y)
@@ -18,6 +18,15 @@ final class Point
       int g = 0;
       int f = 0;
    }
+
+   public double getG() {
+      return g;
+   }
+
+   public double getF() {
+      return f;
+   }
+
    public int getX(){return x;}
    public int getY(){return y;}
 

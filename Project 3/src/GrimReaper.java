@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class GrimReaper extends ActiveEntity {
 
-    int count = 0;
+    private int count = 0;
 
     public GrimReaper(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);

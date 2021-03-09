@@ -10,6 +10,7 @@ public class Fish extends ActiveEntity {
     public static final int CRAB_PERIOD_SCALE = 4;
     public static final int CRAB_ANIMATION_MIN = 50;
     public static final int CRAB_ANIMATION_MAX = 150;
+
     private int score = 0;
 
     public Fish(String id, Point position, List<PImage> images, int resourceLimit,

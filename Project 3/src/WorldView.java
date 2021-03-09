@@ -5,11 +5,11 @@ import java.util.Optional;
 
 final class WorldView
 {
-   public PApplet screen;
-   public WorldModel world;
-   public int tileWidth;
-   public int tileHeight;
-   public Viewport viewport;
+   private PApplet screen;
+   private WorldModel world;
+   private int tileWidth;
+   private int tileHeight;
+   private Viewport viewport;
 
    public WorldView(int numRows, int numCols, PApplet screen, WorldModel world,
                     int tileWidth, int tileHeight)
@@ -29,19 +29,19 @@ final class WorldView
 
    public void shiftView(int colDelta, int rowDelta)
    {
-      int newCol = clamp(this.viewport.col + colDelta, 0,
-              this.world.numCols - this.viewport.numCols);
-      int newRow = clamp(this.viewport.row + rowDelta, 0,
-              this.world.numRows - this.viewport.numRows);
+      int newCol = clamp(this.viewport.getCol() + colDelta, 0,
+              this.world.getNumCols() - this.viewport.getNumCols());
+      int newRow = clamp(this.viewport.getRow() + rowDelta, 0,
+              this.world.getNumRows() - this.viewport.getNumRows());
 
       this.viewport.shift(newCol, newRow);
    }
 
    public void drawBackground()
    {
-      for (int row = 0; row < this.viewport.numRows; row++)
+      for (int row = 0; row < this.viewport.getNumRows(); row++)
       {
-         for (int col = 0; col < this.viewport.numCols; col++)
+         for (int col = 0; col < this.viewport.getNumCols(); col++)
          {
             Point worldPoint = this.viewport.viewportToWorld(col, row);
             Optional<PImage> image = this.world.getBackgroundImage(worldPoint);
@@ -57,7 +57,7 @@ final class WorldView
    public void drawEntities()
    {
       int count = 0;
-      for (Entity entity : this.world.entities) {
+      for (Entity entity : this.world.getEntities()) {
          if (entity instanceof Octo) {
             count++;
          }

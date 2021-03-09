@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 final class WorldModel
 {
-   public int numRows;
-   public int numCols;
-   public Background background[][];
-   public Entity occupancy[][];
-   public Set<Entity> entities;
-   public Fish mario;
+   private int numRows;
+   private int numCols;
+   private Background background[][];
+   private Entity occupancy[][];
+   private Set<Entity> entities;
+   private Fish mario;
 
    private static final String OCTO_KEY = "octo";
    private static final int OCTO_NUM_PROPERTIES = 7;
@@ -65,6 +65,18 @@ final class WorldModel
    private static final int REAPER_ANIMATION_PERIOD = 5;
 
    private static final int PROPERTY_KEY = 0;
+
+   public int getNumRows() {
+      return numRows;
+   }
+
+   public int getNumCols() {
+      return numCols;
+   }
+
+   public Set<Entity> getEntities() {
+      return entities;
+   }
 
    public boolean setMarioPos(int x, int y, EventScheduler scheduler, ImageStore imageStore) {
       try {

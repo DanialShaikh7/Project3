@@ -15,7 +15,7 @@ class DijkstraPathingStrategy implements PathingStrategy {
 
 
 
-        Comparator<Point> compareG = (p1, p2) -> (int)(p1.g - p2.g);
+        Comparator<Point> compareG = (p1, p2) -> (int)(p1.getG() - p2.getG());
 
         HashMap<Integer, Point> closedList = new HashMap<>();
         Queue<Point> openList = new PriorityQueue<>(10, compareG);
@@ -33,7 +33,7 @@ class DijkstraPathingStrategy implements PathingStrategy {
             for (Point p : potentialNeighbors.apply(currentNode).filter(notInClosedList).filter(canPassThrough).collect(Collectors.toList())) {
                 if (openListHash.get(p.hashCode()) == null) {
 //                    p.setG(currentNode.g + calculateGStep(currentNode, p));
-                    p.setG(currentNode.g + 1);
+                    p.setG(currentNode.getG() + 1);
                     p.calculateF(end);
                     openListHash.put(p.hashCode(), currentNode);
                     openList.add(p);

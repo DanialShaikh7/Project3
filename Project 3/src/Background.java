@@ -4,9 +4,9 @@ import java.util.List;
 
 final class Background
 {
-   public String id;
-   public List<PImage> images;
-   public int imageIndex;
+   private String id;
+   private List<PImage> images;
+   private int imageIndex;
 
    public Background(String id, List<PImage> images)
    {
@@ -14,6 +14,29 @@ final class Background
       this.images = images;
    }
 
+   public String getId() {
+      return id;
+   }
+
+   public void setId(String id) {
+      this.id = id;
+   }
+
+   public List<PImage> getImages() {
+      return images;
+   }
+
+   public void setImages(List<PImage> images) {
+      this.images = images;
+   }
+
+   public int getImageIndex() {
+      return imageIndex;
+   }
+
+   public void setImageIndex(int imageIndex) {
+      this.imageIndex = imageIndex;
+   }
 
    public PImage getCurrentImage()
    {

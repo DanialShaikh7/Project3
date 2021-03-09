@@ -44,12 +44,12 @@ public final class VirtualWorld
 
    public static double timeScale = 1.0;
 
-   public ImageStore imageStore;
-   public WorldModel world;
-   public WorldView view;
-   public EventScheduler scheduler;
+   private ImageStore imageStore;
+   private WorldModel world;
+   private WorldView view;
+   private EventScheduler scheduler;
 
-   public long next_time;
+   private long next_time;
 
    public void settings()
    {
@@ -208,7 +208,7 @@ public final class VirtualWorld
 
    public static void scheduleActions(WorldModel world,
       EventScheduler scheduler, ImageStore imageStore) {
-      for (Entity entity : world.entities) {
+      for (Entity entity : world.getEntities()) {
          if (entity instanceof ActiveEntity) {
             ActiveEntity aEntity = (ActiveEntity) entity;
             aEntity.scheduleActions(scheduler, world, imageStore);
